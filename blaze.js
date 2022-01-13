@@ -11,8 +11,9 @@ var cash = 41.36;
 //var mult = 1;
 var aposta = 0.0;
 var acumulado = 0.0;
-var base = 0.04;
-var base2 = '0.04';
+var base = 0.04; // aposta base
+var base2 = '0.04'; // aposta base (string)
+let globalBase = 0.05; //aposta global
 var firstTime = 0;
 
 //TESTES VAR
@@ -27,12 +28,15 @@ var num = 0;
   const browser = await puppeteer.launch(); //headless: true,
   const page = await browser.newPage();
   await page.goto('https://blaze.com/pt/games/double');
+  await page.setViewport({width: 1200,height: 800});
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36');
+
 
   //await page.waitForNavigation();
   await page.click('[class="link"]');
   await page.waitForTimeout(3000);
-  await page.type('[name="username"]' , 'USER-LOGIN');
-  await page.type('[type="password"]' , 'USER-PASSWORD');
+  await page.type('[name="username"]' , 'USER-LOGIN'); //Login do usuario
+  await page.type('[type="password"]' , 'USER-PASSWORD'); //Senha
   await page.waitForTimeout(3000);
   await page.click('[class = "input-footer"]');
   await page.waitForTimeout(3000);
@@ -165,12 +169,12 @@ var num = 0;
                         if(buffer[0] == "Black"){
                             flagBlack = 0;
                         // mult = 1;
-                            cash = cash + acumulado + 0.04;
+                            cash = cash + acumulado + globalBase;
                             console.log("ACUMULADO: ", acumulado);
                             console.log("CASH: ", cash);
                             console.log("RealCASH: ", realCash);
                             acumulado = 0;
-                            base = 0.04;
+                            base = globalBase;
                             firstTime = 0;
                             await page.click('[class="white "]');
                         }
@@ -200,12 +204,12 @@ var num = 0;
                         if(buffer[0] == "Red"){
                             flagRed = 0;
                         // mult = 1;
-                            cash = cash + acumulado + 0.04;
+                            cash = cash + acumulado + globalBase;
                             console.log("ACUMULADO: ", acumulado);
                             console.log("CASH: ", cash);
                             console.log("RealCASH: ", realCash);
                             acumulado = 0;
-                            base = 0.04;
+                            base = globalBase;
                             firstTime = 0;
                             await page.click('[class="white "]');
                         }
