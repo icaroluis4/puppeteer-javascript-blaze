@@ -39,8 +39,8 @@ var num = 0;
   //await page.waitForNavigation();
   await page.click('[class="link"]');
   await page.waitForTimeout(5000);
-  await page.type('[name="username"]' , 'icaroluis4@gmail.com'); //Login do usuario
-  await page.type('[type="password"]' , 'Micaiasmendes0'); //Senha
+  await page.type('[name="username"]' , 'USER-LOGIN'); //Login do usuario
+  await page.type('[type="password"]' , 'USER-PASSWORD'); //Senha
   await page.waitForTimeout(3000);
   await page.click('[class = "input-footer"]');
   await page.waitForTimeout(3000);
